@@ -4,7 +4,7 @@ name: devcontainer_ci
 on:
   push:
     paths:
-      - .github/workflows/devcontainer_ci.yaml
+      - .github/workflows/devcontainer_ci.yml
       - .devcontainer/**
       - python/.python-version
       - python/pyproject.toml
