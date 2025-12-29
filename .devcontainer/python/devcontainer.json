@@ -37,20 +37,47 @@
                 "files.insertFinalNewline": true,
                 "files.trimFinalNewlines": true,
                 "files.trimTrailingWhitespace": true,
+                // Python
+                "python.defaultInterpreterPath": "/workspaces/${containerEnv:DEVCONTAINER_NAME}/.venv/bin/python3",
+                "python.useEnvironmentsExtension": true,
+                "python.languageServer": "Pylance",
+                "python.analysis.diagnosticMode": "workspace",
+                "python.analysis.extraPaths": [],
+                "python.analysis.typeCheckingMode": "standard",
+                "python.analysis.diagnosticSeverityOverrides": {
+                    "reportMissingTypeStubs": "none"
+                },
+                "python.analysis.completeFunctionParens": true,
+                "python.analysis.autoImportCompletions": true,
+                "[python]": {
+                    "editor.tabSize": 4,
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll": "explicit",
+                        "source.organizeImports": "explicit"
+                    }
+                }
                 // Workspace
-                "autoOpenWorkspace.enableAutoOpenAlwaysFirst": true
+                // "autoOpenWorkspace.enableAutoOpenAlwaysFirst": true
             },
             "extensions": [
                 // Docker
-                "ms-azuretools.vscode-docker",
                 "exiasr.hadolint",
+                "ms-azuretools.vscode-containers",
                 // Github Actions
                 "github.vscode-github-actions",
                 // Markdown
                 "yzhang.markdown-all-in-one",
                 "davidanson.vscode-markdownlint",
+                // Python
+                "charliermarsh.ruff",
+                "ms-python.python",
+                // Toml
+                "tamasfe.even-better-toml",
+                // Yaml
+                "redhat.vscode-yaml"
                 // Workspace
-                "zoma.vscode-auto-open-workspace"
+                // "zoma.vscode-auto-open-workspace"
             ]
         }
     }
