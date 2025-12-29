@@ -6,6 +6,8 @@ ARG GROUP=${USER}
 ARG UID
 ARG GID
 
+ENV PYTHONUNBUFFERED=1
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     bash-completion=1:2.11-8 \
