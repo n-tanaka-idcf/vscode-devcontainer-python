@@ -41,15 +41,21 @@ jobs:
         run: uv sync --dev
 
       - name: Run tests
+        id: pytest
         run: uv run pytest tests/ -v --tb=short
+        continue-on-error: true
 
       - name: Test Summary
         if: always()
         run: |
           echo "### Test Results :test_tube:" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          if [ "${{ job.status }}" == 'success' ]; then
+          if [ "${{ steps.pytest.outcome }}" == 'success' ]; then
             echo "✅ All tests passed!" >> "$GITHUB_STEP_SUMMARY"
           else
             echo "❌ Some tests failed. Please check the logs above." >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Check test results
+        if: steps.pytest.outcome != 'success'
+        run: exit 1
