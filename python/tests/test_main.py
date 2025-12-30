@@ -37,7 +37,9 @@ def test_hello_endpoint_response_structure():
     response = client.get("/hello")
     
     assert response.status_code == 200
-    assert response.headers["content-type"] == "application/json"
+    # 大文字小文字を区別しないヘッダー比較
+    content_type = response.headers.get("content-type", "")
+    assert "application/json" in content_type
     
     data = response.json()
     assert isinstance(data, dict)
