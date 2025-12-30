@@ -1,3 +1,3 @@
 #!/bin/bash
 
-uv run uvicorn api.main:app --host 0.0.0.0 --reload &
+uv run fastapi dev api/main.py
