@@ -9,6 +9,5 @@ cp .devcontainer/${DEVCONTAINER_NAME}/starship.toml ${HOME}/.config/starship.tom
 
 # Install python and its packages
 cd /workspaces/${DEVCONTAINER_NAME}
-uv sync
 uv python install --default --preview-features python-install-default
 uv sync --frozen
