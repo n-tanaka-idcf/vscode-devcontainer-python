@@ -9,4 +9,9 @@ cp .devcontainer/${DEVCONTAINER_NAME}/starship.toml ${HOME}/.config/starship.tom
 
 # Install python and its packages
 cd /workspaces/${DEVCONTAINER_NAME}
-uv sync --frozen
+if [ -f uv.lock ]; then
+    uv sync --frozen
+else
+    # 初回セットアップなど uv.lock が存在しない場合はロックなしで同期する
+    uv sync
+fi
