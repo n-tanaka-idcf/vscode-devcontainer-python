@@ -65,7 +65,7 @@
 
 ## 🧠 設計・実装の原則
 
-### 『現場で役立つシステム設計の原則』（日本語書籍、英訳タイトル例: "System Design Principles That Are Useful in the Real World"）より
+### 『現場で役立つシステム設計の原則』（日本語書籍、英語タイトルなし、参考訳: "System Design Principles That Are Useful in the Real World"）より
 - 単一責務の原則（SRP）を守り、責務の境界を明確にする。
 - 疎結合・高凝集なモジュール構造を保つ。
 - データ構造・インターフェースを明確に設計。
