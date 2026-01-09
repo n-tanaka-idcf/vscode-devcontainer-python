@@ -1,0 +1,17 @@
+{
+    "folders": [
+        {
+            "name": "project_root",
+            "path": "."
+        },
+        {
+            "name": "python",
+            "path": "./python"
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "python": true
+        }
+    }
+}
