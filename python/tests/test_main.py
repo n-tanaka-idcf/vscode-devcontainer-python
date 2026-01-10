@@ -17,6 +17,7 @@ def _api_main_path() -> Path:
 
 def _load_api_main_module() -> ModuleType:
     # パッケージ構成（api/__init__.py の有無）に依存せずにテストできるように、パス指定で読み込む
+    # これにより、プロジェクトのパッケージ化の段階や実行コンテキスト（pytest の実行場所など）が変わっても、同じテストコードで安定して api/main.py を検証できるようにしている
     spec = importlib.util.spec_from_file_location(
         "api_main_test_module", _api_main_path()
     )
