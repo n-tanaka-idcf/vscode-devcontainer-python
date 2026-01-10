@@ -80,7 +80,10 @@ def test_openapi_contains_hello_path(client: TestClient):
 
 
 def test_docs_endpoints_are_exposed_by_default(client: TestClient):
-    # FastAPI のデフォルト設定（docs_url=/docs, redoc_url=/redoc）を前提にしたスモークテスト
+    # FastAPI が提供するインタラクティブな API ドキュメント UI を、このアプリでは
+    # 「デフォルト URL（docs_url=/docs, redoc_url=/redoc）のまま公開する」ことを前提とした設計になっている。
+    # 今後 docs_url / redoc_url をアプリ側で変更する場合、この仕様変更を検知するためにこのテストは失敗し、
+    # それに合わせて期待するパスを更新する必要がある（ドキュメント UI を提供しない方針ならテストごと見直す）。
     docs = client.get("/docs")
     redoc = client.get("/redoc")
 
