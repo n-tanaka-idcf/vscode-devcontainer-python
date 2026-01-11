@@ -1,46 +1,7 @@
-import importlib.util
-from pathlib import Path
 from types import ModuleType
 
-import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-
-
-def _project_root() -> Path:
-    return Path(__file__).resolve().parents[1]
-
-
-def _api_main_path() -> Path:
-    return _project_root() / "api" / "main.py"
-
-
-def _load_api_main_module() -> ModuleType:
-    # パッケージ構成（api/__init__.py の有無）に依存せずにテストできるように、パス指定で読み込む
-    # これにより、プロジェクトのパッケージ化の段階や実行コンテキスト（pytest の実行場所など）が変わっても、同じテストコードで安定して api/main.py を検証できるようにしている
-    spec = importlib.util.spec_from_file_location(
-        "api_main_test_module", _api_main_path()
-    )
-    assert spec is not None and spec.loader is not None
-
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
-@pytest.fixture()
-def api_main_module() -> ModuleType:
-    return _load_api_main_module()
-
-
-@pytest.fixture()
-def client(api_main_module: ModuleType) -> TestClient:
-    assert hasattr(api_main_module, "app"), (
-        "api/main.py に FastAPI インスタンス `app` が定義されている必要があります"
-    )
-    app = api_main_module.app
-    assert isinstance(app, FastAPI)
-    return TestClient(app)
 
 
 def test_app_is_fastapi_instance(api_main_module: ModuleType):
